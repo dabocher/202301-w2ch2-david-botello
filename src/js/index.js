@@ -1,11 +1,12 @@
-import searchForNaN from "./searchForNaN/searchForNaN";
+import searchForNaN from "./searchForNaN/searchForNaN.js";
 
 const strictEquals = (valueA, valueB) => {
-  switch (valueA) {
-    case NaN:
-      const result = searchForNaN(valueA, valueB);
-      break;
+  let checkedValues;
+  if (valueA !== !NaN) {
+    checkedValues = searchForNaN(valueA, valueB);
   }
+  const result = Object.is(checkedValues[0], checkedValues[1]);
+  return result;
 };
 
-console.log(strictEquals(NaN));
+console.log(strictEquals(NaN, NaN));
