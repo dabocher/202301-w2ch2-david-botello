@@ -2,10 +2,14 @@ import searchForNaN from "./searchForNaN/searchForNaN.js";
 
 const strictEquals = (valueA, valueB) => {
   let checkedValues;
-  if (valueA !== !NaN) {
+  let result;
+  if (Number.isNaN(valueA) && Number.isNaN(valueB)) {
     checkedValues = searchForNaN(valueA, valueB);
+    result = Object.is(checkedValues[0], checkedValues[1]);
+  } else {
+    result = Object.is(valueA, valueB);
   }
-  const result = Object.is(checkedValues[0], checkedValues[1]);
+
   return result;
 };
 
